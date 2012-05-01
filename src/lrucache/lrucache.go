@@ -92,6 +92,17 @@ func (c* CacheStore) GetValue (key string) (present bool, value CacheValue) {
 	return 
 } 
 
+func (c* CacheStore) RemoveValueElem (key string) {
+        c.Store[key].Value.Save ()	
+        delete (c.Store, key)
+	return 
+}
+
+func (c* CacheStore) RemoveValue (key string) {
+	c.RemoveValueElem (key)
+	return 
+} 
+ 
 func (c* CacheStore) GetTopPriority() (priority int) {
 	c.Mu.Lock ()
 	c.TopPriority ++
